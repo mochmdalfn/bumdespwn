@@ -48,10 +48,10 @@ Route::get('categories/{category:slug}', function (category $category){
 });
 
 Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('dashboard', [DashboardController::class, 'index']);
     Route::get('/hubungi', [DashboardController::class, 'hub']);
     Route::resource('berita', BeritaController::class);
     Route::resource('mitra', MitraController::class);
