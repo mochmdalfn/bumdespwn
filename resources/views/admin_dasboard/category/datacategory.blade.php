@@ -57,7 +57,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $category->name }}</td>
                     <td>{{ $category->slug }}</td>
-                    <td>{{ $category->created_at }}</td>
+                    <td>{{ \Carbon\Carbon::parse($category->created_at)->format('d-m-Y'); }}</td>
                     <td>
                         <div>
                             <button class="btn btn-warning">

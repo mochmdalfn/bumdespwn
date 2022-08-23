@@ -57,7 +57,7 @@
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $jenisusaha->category->name }}</td>
                       <td>{{ $jenisusaha->slug }}</td>
-                      <td>{{ $jenisusaha->created_at }}</td>
+                      <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d-m-Y'); }}</td>
                       <td>
                           <a href="{{ route('admin.jenisusaha.edit', $jenisusaha->id) }}" class="buttonNext btn btn-warning">Edit</a>
                           <form action="{{ route('admin.jenisusaha.destory', $jenisusaha->id) }}" method="POST">

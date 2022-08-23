@@ -33,12 +33,6 @@
 							    <input type="text" name="title" id="first-name" required="required" class="form-control " value={{ $post->title }}>
 							</div>
 					    </div>
-						<div class="item form-group">
-							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Slug <span class="required"></span> </label>
-							<div class="col-md-6 col-sm-6 ">
-								<input type="text" id="last-name" name="slug" required="required" class="form-control">
-						    </div>
-						</div>
                         <div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Deskripsi Berita <span class="required"></span> </label>
 							<div class="col-md-6 col-sm-6 ">
@@ -49,8 +43,11 @@
 							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Deskripsi Berita <span class="required"></span> </label>
 							<div class="col-md-6 col-sm-6 ">
 								<select id="last-name" name="category_id" required="required" class="form-control">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
+                                    @foreach ($categories as $category)
+										<option value="{{ $category->id }}">
+											{{ $category->name }}
+										</option>
+									@endforeach
                                 </select>
 						    </div>
 						</div>

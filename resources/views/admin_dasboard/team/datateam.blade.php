@@ -57,7 +57,7 @@
                             <td>{{ $team->nama }}</td>
                             <td>{{ $team->job }}</td>
                             <td>
-                                <a href="{{ route('admin.team.edit', {{ $team->id }}) }}" class="buttonNext btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.team.edit', $team->id ) }}" class="buttonNext btn btn-warning">Edit</a>
                                 <form action="{{ route('admin.team.destory', $team->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')

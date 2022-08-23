@@ -36,9 +36,13 @@ class ProdukpertanianController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->hasFile('gambar')){
+            $gambar = $request->file('gambar')->store('images');
+        }
+
         $produkpertanian = Produkpertanian::create([
             'name' => $request->name,
-            'gambar' => $request->gambar
+            'gambar' => $gambar ?? NULL
         ]);
         //dd($produkpertanian);
         return redirect()->route('admin.mitra.index');
@@ -75,10 +79,17 @@ class ProdukpertanianController extends Controller
      */
     public function update(Request $request, Produkpertanian $produkpertanian)
     {
+
+        if($request->hasFile('gambar')){
+            unlink(public_path($post->gambar));
+            $gambar = $request->file('gambar')->store('images');
+        }
+
         $produkpertanian->update([
             'name' => $request->name,
-            'gambar' => $request->gambar
+            'gambar' => $gambar
         ]);
+
         //dd($produkpertanian);
         return redirect()->route('admin.mitra.index');
     }

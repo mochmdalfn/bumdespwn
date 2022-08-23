@@ -61,7 +61,14 @@
                             <td>{{ $mitra->nmmitra }}</td>
                             <td>{{ $mitra->jnsusaha }}</td>
                             <td>{{ $mitra->alamat }}</td>
-                            <td>{{ $mitra->gambar }}</td>
+                            <td>
+                              @if($mitra->photo)
+                                <img src="{{ url('images/'.$mitra->photo) }}"
+                                  style="width: 75px; height: 75px;">
+                              @else
+                                Tidak ada gambar
+                              @endif
+                            </td>
                             <td>
                                 <a href="{{ route('admin.mitra.edit', $mitra->id) }}" class="buttonNext btn btn-warning">Edit</a>
                                 <form action="{{ route('admin.mitra.destory', $mitra->id) }}" method="POST">

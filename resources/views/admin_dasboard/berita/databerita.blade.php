@@ -50,31 +50,38 @@
                     <th>Slug</th>
                     <th>Tulisan Berita</th>
                     <th>Tanggal</th>
+                    <th>Gambar</th>
                     <th>Pengaturan</th>
                   </tr>
                 </thead>
 
                 <tbody>
                     @foreach ($posts as $post)
-                    <tr>
-                      <td>{{ $loop->iteration }}</td>
-                      <td>{{ $post->category->name }}</td>
-                      <td>{{ $post->user->name }}</td>
-                      <td>{{ $post->title }}</td>
-                      <td>{{ $post->slug }}</td>
-                      <td>{{ $post->deskripsi }}</td>
-                      <td>{{ $post->created_at }}</td>
-                      <td>
-                          <a href="{{ route('admin.berita.edit', $post->id) }}" class="buttonNext btn btn-warning">Edit</a>
-                          <form action="{{ route('admin.berita.destory', $post->id) }}" method="POST">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="buttonPrevious buttonDisabled btn btn-danger">
-                                  Delete
-                              </button>
-                          </form>
-                      </td>
-                    </tr>
+                      <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $post->category->name }}</td>
+                        <td>{{ $post->author->name }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->slug }}</td>
+                        <td>{{ $post->deskripsi }}</td>
+                        <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d-m-Y'); }}</td>
+                        <td>
+                          @if($post->photo)
+                            <img src="{{ url('images/'.$post->photo) }}"
+                              style="width: 75px; height: 75px;">
+                          @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.berita.edit', $post->id) }}" class="buttonNext btn btn-warning">Edit</a>
+                            <form action="{{ route('admin.berita.destroy', $post->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="buttonPrevious buttonDisabled btn btn-danger">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                      </tr>
                     @endforeach
                 </tbody>
               </table>

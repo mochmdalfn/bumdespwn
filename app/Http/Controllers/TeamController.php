@@ -41,9 +41,10 @@ class TeamController extends Controller
                 'job' => $request->job,
                 'gambar' => $request->gambar
         ]);
-        dd($team);
-        return back();
-
+        //dd($team);
+        return redirect()
+            ->route('admin.team.index')
+            ->withSuccess('Data berhasil ditambah');
     }
 
     /**

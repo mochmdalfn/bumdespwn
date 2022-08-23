@@ -36,12 +36,16 @@ class MitraController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->hasFile('gambar')){
+            $gambar = $request->file('gambar')->store('images');
+        }
+
         $mitra = Mitra::create([
             'pemilik' => $request->pemilik,
             'nmmitra' => $request->mitra,
             'jnsusaha' => $request->jnsusaha,
             'alamat' => $request->alamat,
-            'gambar' => $request->gambar
+            'gambar' => $gambar ?? NULL
         ]);
         //dd($mitra);
         return redirect()->route('admin.mitra.index');
@@ -77,13 +81,18 @@ class MitraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Mitra $mitra)
-    {
+    {   
+        if($request->hasFile('gambar')){
+            unlink(public_path($post->gambar));
+            $gambar = $request->file('gambar')->store('images');
+        }
+        
         $mitra->update([
             'pemilik' => $request->pemilik,
             'nmmitra' => $request->mitra,
             'jnsusaha' => $request->jnsusaha,
             'alamat' => $request->alamat,
-            'gambar' => $request->gambar
+            'gambar' => $gambar
         ]);
         //dd($mitra);
         return redirect()->route('admin.mitra.index');

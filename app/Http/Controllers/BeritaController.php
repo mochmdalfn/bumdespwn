@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class BeritaController extends Controller
@@ -25,7 +27,8 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        return view('admin_dasboard.berita.formberita');
+        $categories = Category::all();
+        return view('admin_dasboard.berita.formberita', compact('categories'));
     }
 
     /**
@@ -36,16 +39,22 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->hasFile('gambar')){
+            $gambar = $request->file('gambar')->store('images');
+        }
+
         $post = Post::create([
             'title' => $request->title,
-            'slug' => $request->title,
+            'slug' => Str::slug($request->title, '-'),
             'deskripsi' => $request->deskripsi,
             'category_id' => $request->category_id,
-            'gambar' => $request->gambar
+            'user_id' => auth()->user()->id,
+            'gambar' => $gambar
         ]);
 
-        //dd($post);
-        return redirect()->route('admin.berita.index');
+        return redirect()
+            ->route('admin.berita.index')
+            ->withSuccess('Data berhasil ditambahkan');;
     }
 
     /**
@@ -67,7 +76,8 @@ class BeritaController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin_dasboard.berita.ubahformberita');
+        $categories = Category::all();
+        return view('admin_dasboard.berita.ubahformberita', compact('post', 'categories'));
     }
 
     /**
@@ -79,16 +89,27 @@ class BeritaController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $gambar = $post->gambar;
+
+        if($request->hasFile('gambar')){
+            unlink(public_path($post->gambar));
+            $gambar = $request->file('gambar')->store('images');
+        }
+
         $post->update([
             'title' => $request->title,
             'slug' => $request->title,
             'deskripsi' => $request->deskripsi,
             'category_id' => $request->category_id,
-            'gambar' => $request->gambar
+            'user_id' => auth()->user()->id,
+            'gambar' => $post->gambar
         ]);
 
         //dd($post);
-        return redirect()->route('admin.berita.index');
+
+        return redirect()
+            ->route('admin.berita.index')
+            ->withSuccess('Data berhasil diubah');
     }
 
     /**
@@ -100,6 +121,7 @@ class BeritaController extends Controller
     public function destroy(Post $post)
     {
         try {
+            unlink(public_path($post->gambar));
             $post->delete();
             return back()->withSuccess('Data berhasil dihapus');
         } catch(\Throwable $th) {

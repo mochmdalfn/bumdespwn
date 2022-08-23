@@ -47,12 +47,13 @@ Route::get('categories/{category:slug}', function (category $category){
     ]);
 });
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
+Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
-    Route::get('/hubungi', [DashboardController::class, 'hub']);
+    Route::get('hubungi', [DashboardController::class, 'hub']);
     Route::resource('berita', BeritaController::class);
     Route::resource('mitra', MitraController::class);
     Route::resource('jenisusaha', JenisusahaController::class);
@@ -69,13 +70,6 @@ Route::get('/authors/{author:username}', function (User $author){
         'posts' => $author->posts->load('category','author'),
     ]);
 });
-
-Route::get('/admin', function () {
-    return view('index');
-});
-
-
-
 
 Route::get('/mitra', function () {
     return view('mitra');
