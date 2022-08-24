@@ -7,7 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
-class BeritaController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,7 +40,9 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('gambar')){
-            $gambar = $request->file('gambar')->store('images');
+            $file = $request->file('gambar');
+            $gambar  = time() . "_" . $file->getClientOriginalName();
+            $file->move(public_path('images'), $gambar);
         }
 
         $post = Post::create([
@@ -53,7 +55,7 @@ class BeritaController extends Controller
         ]);
 
         return redirect()
-            ->route('admin.berita.index')
+            ->route('admin.post.index')
             ->withSuccess('Data berhasil ditambahkan');;
     }
 
@@ -108,7 +110,7 @@ class BeritaController extends Controller
         //dd($post);
 
         return redirect()
-            ->route('admin.berita.index')
+            ->route('admin.post.index')
             ->withSuccess('Data berhasil diubah');
     }
 
@@ -121,7 +123,7 @@ class BeritaController extends Controller
     public function destroy(Post $post)
     {
         try {
-            unlink(public_path($post->gambar));
+            unlink(public_path('images/'.$post->gambar));
             $post->delete();
             return back()->withSuccess('Data berhasil dihapus');
         } catch(\Throwable $th) {

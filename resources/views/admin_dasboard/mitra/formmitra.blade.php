@@ -40,21 +40,33 @@
 						    </div>
 						</div>
                         <div class="item form-group">
-							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Kategori <span class="required"></span> </label>
+							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Jenis Usaha <span class="required"></span> </label>
 							<div class="col-md-6 col-sm-6 ">
 								<select id="last-name" name="jenisusaha_id" required="required" class="form-control">
-                                    @foreach ($categories as $category)
-										<option value="{{ $category->id }}">
-											{{ $category->name }}
+                                    @foreach ($jenisusaha as $jenisusaha)
+										<option value="{{ $jenisusaha->id }}">
+											{{ $jenisusaha->name }}
 										</option>
 									@endforeach
                                 </select>
+						    </div>
+						</div>
+						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Produk Mitra <span class="required"></span> </label>
+							<div class="col-md-6 col-sm-6 ">
+								<input type="text" id="last-name" name="produkmitra" required="required" class="form-control">
 						    </div>
 						</div>
                         <div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Alamat Lengkap <span class="required"></span> </label>
 							<div class="col-md-6 col-sm-6 ">
 								<input type="text" id="last-name" name="alamat" required="required" class="form-control">
+						    </div>
+						</div>
+						<div class="item form-group">
+							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nomer Handphone <span class="required"></span> </label>
+							<div class="col-md-6 col-sm-6 ">
+								<input type="text" id="last-name" name="nomerhandphone" required="required" class="form-control">
 						    </div>
 						</div>
                         <div class="item form-group">

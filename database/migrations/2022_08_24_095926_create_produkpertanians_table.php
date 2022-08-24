@@ -15,6 +15,8 @@ class CreateProdukpertaniansTable extends Migration
     {
         Schema::create('produkpertanians', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('gambar');
             $table->timestamps();
         });
     }

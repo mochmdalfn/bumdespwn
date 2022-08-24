@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\DashboardController;
@@ -28,9 +28,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('faq');
-});
+Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/tentangkami', [LandingPageController::class, 'tentangkami']);
 Route::get('/posts', [LandingPageController::class, 'post']);
 Route::get('posts/{post:slug}', [LandingPageController::class, 'show']);
@@ -49,12 +47,13 @@ Route::get('categories/{category:slug}', function (category $category){
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');
+Route::post('/register', [UserController::class, 'store']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::get('hubungi', [DashboardController::class, 'hub']);
-    Route::resource('berita', BeritaController::class);
+    Route::resource('post', PostController::class);
     Route::resource('mitra', MitraController::class);
     Route::resource('jenisusaha', JenisusahaController::class);
     Route::resource('indikator', IndikatorController::class);

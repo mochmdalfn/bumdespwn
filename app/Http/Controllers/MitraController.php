@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mitra;
+use App\Models\Jenisusaha;
 use Illuminate\Http\Request;
 
 class MitraController extends Controller
@@ -25,7 +26,8 @@ class MitraController extends Controller
      */
     public function create()
     {
-        return view('admin_dasboard.mitra.formmitra');
+        $jenisusaha = Jenisusaha::all();
+        return view('admin_dasboard.mitra.formmitra', compact('jenisusaha'));
     }
 
     /**
@@ -37,13 +39,17 @@ class MitraController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('gambar')){
-            $gambar = $request->file('gambar')->store('images');
+            $file = $request->file('gambar');
+            $gambar  = time() . "_" . $file->getClientOriginalName();
+            $file->move(public_path('images'), $gambar);
         }
 
         $mitra = Mitra::create([
             'pemilik' => $request->pemilik,
-            'nmmitra' => $request->mitra,
-            'jnsusaha' => $request->jnsusaha,
+            'nmmitra' => $request->nmmitra,
+            'jenisusaha_id' => $request->jenisusaha_id,
+            'produkmitra' => $request->produkmitra,
+            'nomerhandphone' => $request->nomerhandphone,
             'alamat' => $request->alamat,
             'gambar' => $gambar ?? NULL
         ]);
@@ -70,7 +76,8 @@ class MitraController extends Controller
      */
     public function edit(Mitra $mitra)
     {
-        return view('admin_dasboard.mitra.ubahformmitra', compact('mitra'));
+        $jenisusaha = Jenisusaha::all();
+        return view('admin_dasboard.mitra.ubahformmitra', compact('mitra', 'jenisusaha'));
     }
 
     /**
@@ -83,7 +90,7 @@ class MitraController extends Controller
     public function update(Request $request, Mitra $mitra)
     {
         if($request->hasFile('gambar')){
-            unlink(public_path($post->gambar));
+            unlink(public_path($mitra->gambar));
             $gambar = $request->file('gambar')->store('images');
         }
 
@@ -107,6 +114,7 @@ class MitraController extends Controller
     public function destroy(Mitra $mitra)
     {
         try {
+            unlink(public_path('images/'.$mitra->gambar));
             $mitra->delete();
             return back()->withSuccess('Data berhasil dihapus');
         } catch(\Throwable $th) {

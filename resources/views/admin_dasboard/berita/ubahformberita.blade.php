@@ -24,7 +24,7 @@
 				</div>
 				<div class="x_content">
 				<br />
-					<form action="{{ route('admin.berita.update', $post->id) }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+					<form action="{{ route('admin.post.update', $post->id) }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="item form-group">
@@ -36,7 +36,7 @@
                         <div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Deskripsi Berita <span class="required"></span> </label>
 							<div class="col-md-6 col-sm-6 ">
-								<textarea id="last-name" name="dekripsi" required="required" class="form-control"> {{ $post->deskripsi }}</textarea>
+								<textarea id="last-name" name="deskripsi" required="required" class="form-control"> {{ $post->deskripsi }}</textarea>
                            </div>
 						</div>
                         <div class="item form-group">
@@ -52,9 +52,9 @@
 						    </div>
 						</div>
                         <div class="item form-group">
-							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Gambar <span class="required"></span> </label>
+							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Gambar </label>
 							<div class="col-md-6 col-sm-6 ">
-								<input type="file" id="last-name" name="gambar" required="required" class="form-control">
+								<input type="file" id="last-name" name="gambar" class="form-control">
 						    </div>
 						</div>
 						<div class="ln_solid"></div>

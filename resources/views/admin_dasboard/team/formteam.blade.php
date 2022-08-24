@@ -42,7 +42,7 @@
 						<div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Gambar <span class="required"></span> </label>
 							<div class="col-md-6 col-sm-6 ">
-								<input type="file" id="name" name="ang_jnsusaha" required="required" class="form-control">
+								<input type="file" id="name" name="gambar" required="required" class="form-control">
 						    </div>
 						</div>
 						<div class="ln_solid"></div>

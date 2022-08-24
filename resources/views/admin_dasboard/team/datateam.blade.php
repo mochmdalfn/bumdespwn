@@ -46,6 +46,7 @@
                     <th>No</th>
                     <th>Nama Lengkap</th>
                     <th>Job</th>
+                    <th>Gambar</th>
                     <th>Pengaturan</th>
                   </tr>
                 </thead>
@@ -54,11 +55,16 @@
                     @foreach ($team as $team)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $team->nama }}</td>
+                            <td>{{ $team->name }}</td>
                             <td>{{ $team->job }}</td>
                             <td>
-                                <a href="{{ route('admin.team.edit', $team->id ) }}" class="buttonNext btn btn-warning">Edit</a>
-                                <form action="{{ route('admin.team.destory', $team->id) }}" method="POST">
+                              @if($team->gambar)
+                                <img src="{{ url('images/'.$team->gambar) }}"
+                                  style="width: 75px; height: 75px;">
+                              @endif
+                            </td>
+                            <td>
+                                <form action="{{ route('admin.team.destroy', $team->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="buttonPrevious buttonDisabled btn btn-danger">

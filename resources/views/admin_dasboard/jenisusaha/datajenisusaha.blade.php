@@ -45,7 +45,7 @@
                   <tr>
                     <th>No</th>
                     <th>Nama Kategori</th>
-                    <th>Slug</th>
+                    <th>Penjelasan</th>
                     <th>Tanggal</th>
                     <th>Pengaturan</th>
                   </tr>
@@ -55,12 +55,12 @@
                     @foreach ($jenisusaha as $jenisusaha)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $jenisusaha->category->name }}</td>
-                      <td>{{ $jenisusaha->slug }}</td>
-                      <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d-m-Y'); }}</td>
+                      <td>{{ $jenisusaha->name }}</td>
+                      <td>{{ $jenisusaha->penjelasan }}</td>
+                      <td>{{ \Carbon\Carbon::parse($jenisusaha->created_at)->format('d-m-Y'); }}</td>
                       <td>
                           <a href="{{ route('admin.jenisusaha.edit', $jenisusaha->id) }}" class="buttonNext btn btn-warning">Edit</a>
-                          <form action="{{ route('admin.jenisusaha.destory', $jenisusaha->id) }}" method="POST">
+                          <form action="{{ route('admin.jenisusaha.destroy', $jenisusaha->id) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="buttonPrevious buttonDisabled btn btn-danger">

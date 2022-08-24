@@ -66,14 +66,16 @@
                         <td>{{ $post->deskripsi }}</td>
                         <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d-m-Y'); }}</td>
                         <td>
-                          @if($post->photo)
-                            <img src="{{ url('images/'.$post->photo) }}"
+                          @if($post->gambar)
+                            <img src="{{ url('images/'.$post->gambar) }}"
                               style="width: 75px; height: 75px;">
                           @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.berita.edit', $post->id) }}" class="buttonNext btn btn-warning">Edit</a>
-                            <form action="{{ route('admin.berita.destroy', $post->id) }}" method="POST">
+                          <button class="btn btn-warning">
+                            <a href="{{ route('admin.post.edit', $post->id) }}" style="color:black;">Edit
+                        </button>
+                            <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="buttonPrevious buttonDisabled btn btn-danger">

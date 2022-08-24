@@ -59,11 +59,11 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $mitra->pemilik }}</td>
                             <td>{{ $mitra->nmmitra }}</td>
-                            <td>{{ $mitra->jnsusaha }}</td>
+                            <td>{{ $mitra->jenisusaha_id }}</td>
                             <td>{{ $mitra->alamat }}</td>
                             <td>
-                              @if($mitra->photo)
-                                <img src="{{ url('images/'.$mitra->photo) }}"
+                              @if($mitra->gambar)
+                                <img src="{{ url('images/'.$mitra->gambar) }}"
                                   style="width: 75px; height: 75px;">
                               @else
                                 Tidak ada gambar
@@ -71,7 +71,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.mitra.edit', $mitra->id) }}" class="buttonNext btn btn-warning">Edit</a>
-                                <form action="{{ route('admin.mitra.destory', $mitra->id) }}" method="POST">
+                                <form action="{{ route('admin.mitra.destroy', $mitra->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="buttonPrevious buttonDisabled btn btn-danger">

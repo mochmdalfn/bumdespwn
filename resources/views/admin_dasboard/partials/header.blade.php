@@ -30,7 +30,6 @@
                 <li><a href="/admin/mitra/create">Mitra</a></li>
                 <li><a href="/admin/jenisusaha/create">Jenis Usaha</a></li>
                 <li><a href="/admin/produkpertanian/create">Produk Mitra</a></li>
-                <li><a href="/admin/indikator/create">Indikator Angka</a></li>
               </ul>
             </li>
             <li><a><i class="fa fa-table"></i> Tabel Data <span class="fa fa-chevron-down"></span></a>
@@ -38,7 +37,6 @@
                 <li><a href="/admin/mitra">Mitra</a></li>
                 <li><a href="/admin/jenisusaha">Jenis Usaha</a></li>
                 <li><a href="/admin/produkpertanian">Produk Mitra</a></li>
-                <li><a href="/admin/indikator/">Indikator Angka</a></li>
               </ul>
             </li>
             <li><a><i class="fa fa-sitemap"></i> Team <span class="fa fa-chevron-down"></span></a>
@@ -47,10 +45,15 @@
                     <li><a href="/admin/team">Data</a>
                 </ul>
             </li>
+            <li><a><i class="fa fa-clone"></i> Hubungin <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                  <li><a href="/admin/team">Data</a>
+              </ul>
+          </li>
             <li><a><i class="fa fa-clone"></i>Berita & Kategori <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a href="/admin/berita/create">Isi Berita</a></li>
-                  <li><a href="/admin/berita">Data Berita</a></li>
+                  <li><a href="/admin/post/create">Isi Berita</a></li>
+                  <li><a href="/admin/post">Data Berita</a></li>
                   <li><a href="/admin/category/create">Isi Category</a></li>
                   <li><a href="/admin/category">Data Category</a></li>
                 </ul>
@@ -65,7 +68,7 @@
         <a data-toggle="tooltip" data-placement="top" title="Settings">
           <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
         </a>
-        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+        <a data-toggle="tooltip" data-placement="top" title="Logout" href="/logout">
           <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
         </a>
       </div>
@@ -92,7 +95,7 @@
                   <span>Settings</span>
                 </a>
             <a class="dropdown-item"  href="javascript:;">Help</a>
-              <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+              <a class="dropdown-item"  href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
             </div>
           </li>
         </ul>

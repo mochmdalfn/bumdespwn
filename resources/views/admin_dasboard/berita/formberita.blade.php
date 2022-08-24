@@ -24,7 +24,7 @@
 				</div>
 				<div class="x_content">
 				<br />
-					<form action="{{ route('admin.berita.store') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+					<form action="{{ route('admin.post.store') }}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         <div class="item form-group">

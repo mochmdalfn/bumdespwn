@@ -54,11 +54,18 @@
                     @foreach ($produkpertanian as $produk)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $produk->namaproduk }}</td>
-                      <td>{{ $produk->gambar }}</td>
+                      <td>{{ $produk->name }}</td>
+                      <td>
+                        @if($produk->gambar)
+                          <img src="{{ url('images/'.$produk->gambar) }}"
+                            style="width: 75px; height: 75px;">
+                        @else
+                          Tidak ada gambar
+                        @endif
+                      </td>
                       <td>
                           <a href="{{ route('admin.produkpertanian.edit', $produk->id) }}" class="buttonNext btn btn-warning">Edit</a>
-                          <form action="{{ route('admin.produkpertanian.destory', $produk->id) }}" method="POST">
+                          <form action="{{ route('admin.produkpertanian.destroy', $produk->id) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="buttonPrevious buttonDisabled btn btn-danger">

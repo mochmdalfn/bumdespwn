@@ -47,7 +47,7 @@
                     <th>Nama Lengkap</th>
                     <th>Email</th>
                     <th>Subject</th>
-                    <th>Pesan/th>
+                    <th>Pesan</th>
                     <th>Pengaturan</th>
                   </tr>
                 </thead>

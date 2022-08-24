@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Models\Produkpertanian;
 use Illuminate\Http\Request;
 
-class TeamController extends Controller
+class ProdukpertanianController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $team = Team::all();
-        return view('admin_dasboard.team.datateam', compact('team'));
+        $produkpertanian = Produkpertanian::all();
+        return view('admin_dasboard.produkpertanian.dataprodukper', compact('produkpertanian'));
     }
 
     /**
@@ -25,7 +25,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('admin_dasboard.team.formteam');
+        return view('admin_dasboard.produkpertanian.formprodukper');
     }
 
     /**
@@ -42,24 +42,21 @@ class TeamController extends Controller
             $file->move(public_path('images'), $gambar);
         }
 
-        $team = Team::create([
+        $produkper = Produkpertanian::create([
             'name' => $request->name,
-            'job' => $request->job,
             'gambar' => $gambar
         ]);
-
-        return redirect()
-            ->route('admin.team.index')
-            ->withSuccess('Data berhasil ditambah');
+        //dd($jenisusaha);
+        return redirect()->route('admin.produkpertanian.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\Produkpertanian  $produkpertanian
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show(Produkpertanian $produkpertanian)
     {
         //
     }
@@ -67,37 +64,47 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\Produkpertanian  $produkpertanian
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit(Produkpertanian $produkpertanian)
     {
-        //return view('team');
+        return view('admin_dasboard.produkpertanian.ubahformprodukper', compact('produkpertanian'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\Produkpertanian  $produkpertanian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, Produkpertanian $produkpertanian)
     {
-        //
+        if($request->hasFile('gambar')){
+            unlink(public_path($mitra->gambar));
+            $gambar = $request->file('gambar')->store('images');
+        }
+
+        $produkpertanian->update([
+            'name' => $request->name,
+            'gambar' => $gambar
+        ]);
+        //dd($produkper);
+        return redirect()->route('admin.produkpertanian.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Team  $team
+     * @param  \App\Models\Produkpertanian  $produkpertanian
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy(Produkpertanian $produkpertanian)
     {
         try {
-            unlink(public_path('images/'.$team->gambar));
-            $team->delete();
+            unlink(public_path('images/'.$mitra->gambar));
+            $produkpertanian->delete();
             return back()->withSuccess('Data berhasil dihapus');
         } catch(\Throwable $th) {
             return back()->withError('Data gagal dihapus karena berketergantungan dengan tabel lain');
