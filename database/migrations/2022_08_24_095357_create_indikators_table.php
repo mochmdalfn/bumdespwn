@@ -15,8 +15,8 @@ class CreateIndikatorsTable extends Migration
     {
         Schema::create('indikators', function (Blueprint $table) {
             $table->id();
-            $table->integer('ang_mitra');
-            $table->integer('ang_jnsusaha');
+            $table->foreignId('mitra_id');
+            $table->foreignId('jenisusaha_id');
             $table->integer('ang_investasi');
             $table->integer('ang_omzet');
             $table->timestamps();

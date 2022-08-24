@@ -21,8 +21,17 @@ class UserSeeder extends Seeder
             'name' => 'alfian',
             'email' => 'alfian@gmail.com',
             'username' => 'alfian',
+            'level' => 'super',
             'status' => 'active',
             'password' => Hash::make('alfian'),
+        ]);
+        User::create([
+            'name' => 'bagas',
+            'email' => 'bagas@gmail.com',
+            'username' => 'bagas',
+            'level' => 'biasa',
+            'status' => 'active',
+            'password' => Hash::make('bagas'),
         ]);
     }
 }

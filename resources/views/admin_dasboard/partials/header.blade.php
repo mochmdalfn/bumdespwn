@@ -29,7 +29,7 @@
               <ul class="nav child_menu">
                 <li><a href="/admin/mitra/create">Mitra</a></li>
                 <li><a href="/admin/jenisusaha/create">Jenis Usaha</a></li>
-                <li><a href="/admin/produkpertanian/create">Produk Pertanian</a></li>
+                <li><a href="/admin/produkpertanian/create">Produk Mitra</a></li>
                 <li><a href="/admin/indikator/create">Indikator Angka</a></li>
               </ul>
             </li>
@@ -37,7 +37,8 @@
               <ul class="nav child_menu">
                 <li><a href="/admin/mitra">Mitra</a></li>
                 <li><a href="/admin/jenisusaha">Jenis Usaha</a></li>
-                <li><a href="/admin/produkpertanian">Produk Pertanian</a></li>
+                <li><a href="/admin/produkpertanian">Produk Mitra</a></li>
+                <li><a href="/admin/indikator/">Indikator Angka</a></li>
               </ul>
             </li>
             <li><a><i class="fa fa-sitemap"></i> Team <span class="fa fa-chevron-down"></span></a>
@@ -46,10 +47,12 @@
                     <li><a href="/admin/team">Data</a>
                 </ul>
             </li>
-            <li><a><i class="fa fa-clone"></i>Berita <span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-clone"></i>Berita & Kategori <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li><a href="/admin/berita/create">Isi Berita</a></li>
-                  <li><a href="/admin/berita">Data</a></li>
+                  <li><a href="/admin/berita">Data Berita</a></li>
+                  <li><a href="/admin/category/create">Isi Category</a></li>
+                  <li><a href="/admin/category">Data Category</a></li>
                 </ul>
               </li>
           </ul>

@@ -40,9 +40,15 @@
 						    </div>
 						</div>
                         <div class="item form-group">
-							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Jenis Usaha <span class="required"></span> </label>
+							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Kategori <span class="required"></span> </label>
 							<div class="col-md-6 col-sm-6 ">
-								<input type="text" id="last-name" name="jnsusaha" required="required" class="form-control">
+								<select id="last-name" name="jenisusaha_id" required="required" class="form-control">
+                                    @foreach ($categories as $category)
+										<option value="{{ $category->id }}">
+											{{ $category->name }}
+										</option>
+									@endforeach
+                                </select>
 						    </div>
 						</div>
                         <div class="item form-group">

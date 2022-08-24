@@ -25,7 +25,7 @@ class MitraController extends Controller
      */
     public function create()
     {
-        return view('admin_dasboard.jenisusaha.formjenisusaha');
+        return view('admin_dasboard.mitra.formmitra');
     }
 
     /**
@@ -81,12 +81,12 @@ class MitraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Mitra $mitra)
-    {   
+    {
         if($request->hasFile('gambar')){
             unlink(public_path($post->gambar));
             $gambar = $request->file('gambar')->store('images');
         }
-        
+
         $mitra->update([
             'pemilik' => $request->pemilik,
             'nmmitra' => $request->mitra,
