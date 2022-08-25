@@ -16,15 +16,15 @@
             </div>
             <div class="col-md-3 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Mitra</span>
-              <div class="count">2500</div>
+              <div class="count">{{ $total_mitra }}</div>
             </div>
             <div class="col-md-3 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Jenis Usaha</span>
-              <div class="count">2500</div>
+              <div class="count">{{ $total_jenis_usaha }}</div>
             </div>
             <div class="col-md-3 col-sm-4  tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Produk Pertanian</span>
-              <div class="count">2500</div>
+              <div class="count">{{ $total_produk_pertanian }}</div>
             </div>
           </div>
         </div>

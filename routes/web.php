@@ -29,6 +29,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/mitra', [LandingPageController::class, 'mitra']);
 Route::get('/tentangkami', [LandingPageController::class, 'tentangkami']);
 Route::get('/posts', [LandingPageController::class, 'post']);
 Route::get('posts/{post:slug}', [LandingPageController::class, 'show']);
@@ -68,10 +69,6 @@ Route::get('/authors/{author:username}', function (User $author){
         'title' => "Post by Author : $author->name",
         'posts' => $author->posts->load('category','author'),
     ]);
-});
-
-Route::get('/mitra', function () {
-    return view('mitra');
 });
 
 Route::get('/kontak', function () {
