@@ -90,14 +90,16 @@ class MitraController extends Controller
     public function update(Request $request, Mitra $mitra)
     {
         if($request->hasFile('gambar')){
-            unlink(public_path($mitra->gambar));
-            $gambar = $request->file('gambar')->store('images');
+            unlink(public_path('images'.$mitra->gambar));
+            $file = $request->file('gambar');
+            $gambar  = time() . "_" . $file->getClientOriginalName();
+            $file->move(public_path('images'), $gambar);
         }
 
         $mitra->update([
             'pemilik' => $request->pemilik,
-            'nmmitra' => $request->mitra,
-            'jnsusaha' => $request->jnsusaha,
+            'nmmitra' => $request->nmmitra,
+            'jenisusaha_id' => $request->jenisusaha_id,
             'alamat' => $request->alamat,
             'gambar' => $gambar
         ]);

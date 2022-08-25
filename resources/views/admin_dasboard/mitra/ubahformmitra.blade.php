@@ -42,7 +42,7 @@
                         <div class="item form-group">
 							<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Jenis Usaha <span class="required"></span> </label>
 							<div class="col-md-6 col-sm-6 ">
-								<input type="text" id="last-name" name="jnsusaha" required="required" class="form-control" value={{ $mitra->jnsusaha }}>
+								<input type="text" id="last-name" name="jenisusaha_id" required="required" class="form-control" value={{ $mitra->jenisusaha_id }}>
 						    </div>
 						</div>
                         <div class="item form-group">
